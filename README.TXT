@@ -24,7 +24,10 @@
  */
 
 
-The folder containing this file can be opened as a project folder in the NetBeans 5 IDE
+pdfWriteBookmarks is build with [Maven](http://maven.apache.org/). You can
+build it with the command
+
+    ./mvnw package
 
 You will find the actual source code files in the subfolder src/pdfwritebookmarks/
 

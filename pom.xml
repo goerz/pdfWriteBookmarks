@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>goerz</groupId>
+    <artifactId>pdfWriteBookmarks</artifactId>
+    <version>0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License version 2</name>
+            <url>https://opensource.org/licenses/GPL-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/goerz/pdfWriteBookmarks.git</connection>
+        <developerConnection>scm:git:git@github.com:goerz/pdfWriteBookmarks.git</developerConnection>
+        <url>https://github.com/goerz/pdfWriteBookmarks/</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>0.7.3-dev-20060327</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/dist/lib/PDFBox-0.7.3-dev-20060327.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>pdfWriteBookmarks</finalName>
+        <sourceDirectory>${basedir}/src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>pdfwritebookmarks.Main</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>lib/PDFBox-0.7.3-dev-20060327.jar</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <outputDirectory>dist</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
