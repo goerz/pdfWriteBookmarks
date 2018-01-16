@@ -63,7 +63,6 @@ public class BookmarkList {
             
             BufferedReader in = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
             
-            int i = 0;
             while(line != null) {
                line = in.readLine();
                if (line != null){
@@ -89,9 +88,7 @@ public class BookmarkList {
                            System.out.println("ERROR: Could not parse bookmarks");
                            System.exit(1);
                        }
-                       bookmarks.add(i,new BookmarkItem(title, page, level));
-                       i++;
-                       numberOfBookmarks = i;
+                       bookmarks.add(new BookmarkItem(title, page, level));
                        title = "";
                        level = 0;
                        page = 0;
@@ -117,9 +114,7 @@ public class BookmarkList {
                        try{
                             page = Integer.parseInt(line.replaceFirst("BookmarkPageNumber: ",""));
                             if ((title != "") && (level != 0) && (page != 0)){
-                                bookmarks.add(i,new BookmarkItem(title, page, level));
-                                i++;
-                                numberOfBookmarks = i;
+                                bookmarks.add(new BookmarkItem(title, page, level));
                                 title = "";
                                 level = 0;
                                 page = 0;
@@ -142,7 +137,6 @@ public class BookmarkList {
     }
     
     private java.util.Vector<BookmarkItem> bookmarks = new java.util.Vector<BookmarkItem>();
-    private int numberOfBookmarks = 0;
     
     public String getTitle(int i){
         return bookmarks.get(i).getTitle();
@@ -157,6 +151,6 @@ public class BookmarkList {
     }
     
     public int getNumberOfBookmarks(){
-        return numberOfBookmarks;
+        return bookmarks.size();
     }
 }
