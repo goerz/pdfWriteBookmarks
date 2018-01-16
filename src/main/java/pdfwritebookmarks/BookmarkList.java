@@ -141,37 +141,19 @@ public class BookmarkList {
         }
     }
     
-    private java.util.Vector bookmarks = new java.util.Vector();
+    private java.util.Vector<BookmarkItem> bookmarks = new java.util.Vector<BookmarkItem>();
     private int numberOfBookmarks = 0;
     
     public String getTitle(int i){
-        if (bookmarks.get(i) instanceof BookmarkItem){
-            return ((BookmarkItem)bookmarks.get(i)).getTitle();
-        } else {
-            System.out.println("Error: Item in BookmarkList is not of type BookmarkItem");
-            System.exit(1);
-            return "";
-        }
+        return bookmarks.get(i).getTitle();
     }
     
     public int getPageNumber(int i){
-        if (bookmarks.get(i) instanceof BookmarkItem){
-            return ((BookmarkItem)bookmarks.get(i)).getPageNumber();
-        } else {
-            System.out.println("Item in BookmarkList is not of type BookmarkItem");
-            System.exit( 1 );
-            return 0;
-        } 
+        return bookmarks.get(i).getPageNumber();
     }
     
     public int getLevel(int i){
-        if (bookmarks.get(i) instanceof BookmarkItem){
-            return ((BookmarkItem)bookmarks.get(i)).getLevel();
-        } else {
-            System.out.println("Item in BookmarkList is not of type BookmarkItem");
-            System.exit( 1 );
-            return 0;
-        }
+        return bookmarks.get(i).getLevel();
     }
     
     public int getNumberOfBookmarks(){
