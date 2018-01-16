@@ -45,13 +45,13 @@ public class LevelManager {
     
     private int currentlevel = 0;
     
-    private java.util.Stack levelstack = new java.util.Stack();
+    private java.util.Stack<PDOutlineItem> levelstack = new java.util.Stack<PDOutlineItem>();
     
     
     public PDOutlineItem register(PDOutlineItem item, int level){
         // adds a new bookmark to the manager at level, and returns the
         // parent of the new bookmark
-        Object result = null;
+        PDOutlineItem result = null;
         Object garbage = null; // used to pop to nirvana
         if (level == currentlevel){
             garbage = levelstack.pop(); // remove last bookmark from the same level
@@ -76,7 +76,7 @@ public class LevelManager {
             } // result stays at null otherwise
         }
         levelstack.push(item);
-        return (PDOutlineItem)result;
+        return result;
     }
     
 }
