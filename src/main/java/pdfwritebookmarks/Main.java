@@ -42,6 +42,8 @@ import org.pdfbox.pdmodel.interactive.documentnavigation.outline.PDOutlineItem;
 
 import java.util.List;
 
+import static pdfwritebookmarks.BookmarkListParser.parseBookmarks;
+
 public class Main {
     
     /** Creates a new instance of Main */
@@ -65,8 +67,6 @@ public class Main {
             usage();
             System.exit(0);
         }
-        // get the bookmarks from file
-        BookmarkList bookmarklist = new BookmarkList(bookmarkfile);
         // open the pdf file
         PDDocument document = null;
         try{
@@ -86,12 +86,12 @@ public class Main {
             LevelManager manager = new LevelManager();
             
             //create all the bookmarks
-            for( int i=0; i < bookmarklist.getNumberOfBookmarks(); i++ ){
+            for( BookmarkItem item: parseBookmarks(bookmarkfile) ){
                 PDOutlineItem bookmark = new PDOutlineItem();
-                bookmark.setTitle(bookmarklist.getTitle(i));
-                PDPage page = (PDPage)pages.get(bookmarklist.getPageNumber(i)-1);// counting in list starts at zero!
+                bookmark.setTitle(item.getTitle());
+                PDPage page = (PDPage)pages.get(item.getPageNumber()-1);// counting in list starts at zero!
                 bookmark.setDestination(page);
-                PDOutlineItem parent = manager.register(bookmark, bookmarklist.getLevel(i));
+                PDOutlineItem parent = manager.register(bookmark, item.getLevel());
                 if (parent == null){
                     outline.appendChild(bookmark);
                 } else {

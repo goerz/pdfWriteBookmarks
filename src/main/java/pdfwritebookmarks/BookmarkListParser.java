@@ -37,10 +37,10 @@ package pdfwritebookmarks;
 import java.io.*;
 
 
-public class BookmarkList {
+public class BookmarkListParser {
     
-    /** Creates a new instance of BookmarkList */
-    public BookmarkList(String inputfile) {
+    /** Parses a bookmark file */
+    public static Iterable<BookmarkItem> parseBookmarks(String inputfile) {
         // Parses the Inputfile and creates a list of the bookmarks in it
         // The format is like that in the output of pdftk:
         // [...]
@@ -53,6 +53,7 @@ public class BookmarkList {
         //      Bookmark Title :: Pagenumber
         // The indentation controls the level, exactly four spaces indentation
         // per level
+        java.util.List<BookmarkItem> bookmarks = new java.util.ArrayList<BookmarkItem>();
         String line = "";
         String title = "";
         int page = 0;
@@ -134,23 +135,6 @@ public class BookmarkList {
             System.out.println("Could not read from file");
             System.exit(1);
         }
-    }
-    
-    private java.util.Vector<BookmarkItem> bookmarks = new java.util.Vector<BookmarkItem>();
-    
-    public String getTitle(int i){
-        return bookmarks.get(i).getTitle();
-    }
-    
-    public int getPageNumber(int i){
-        return bookmarks.get(i).getPageNumber();
-    }
-    
-    public int getLevel(int i){
-        return bookmarks.get(i).getLevel();
-    }
-    
-    public int getNumberOfBookmarks(){
-        return bookmarks.size();
+        return bookmarks;
     }
 }
