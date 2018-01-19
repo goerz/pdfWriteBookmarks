@@ -51,22 +51,15 @@ public class LevelManager {
     public PDOutlineItem register(PDOutlineItem item, int level){
         // adds a new bookmark to the manager at level, and returns the
         // parent of the new bookmark
-        Object garbage = null; // used to pop to nirvana
-        if (level == currentlevel){
-            garbage = levelstack.pop(); // remove last bookmark from the same level
-        } else 
-        if (level > currentlevel){
-            currentlevel++;
-        } else
-        if (level < currentlevel){
-            while (level < currentlevel + 1){
-                garbage = levelstack.pop();
-                currentlevel--;
-            }
-            currentlevel = level;
+
+        //remove all items that are not an ancestor of the current item
+        while (level <= currentlevel){
+            levelstack.pop();
+            currentlevel--;
         }
         PDOutlineItem parent = levelstack.empty() ? null : levelstack.peek();
         levelstack.push(item);
+        currentlevel++;
         return parent;
     }
     
