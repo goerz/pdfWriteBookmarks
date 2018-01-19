@@ -53,7 +53,7 @@ public class LevelManager {
         // parent of the new bookmark
 
         //remove all items that are not an ancestor of the current item
-        while (level < currentlevel + 1){
+        while (level <= currentlevel){
             levelstack.pop();
             currentlevel--;
         }
