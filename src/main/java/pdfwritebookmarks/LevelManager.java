@@ -58,12 +58,10 @@ public class LevelManager {
                 garbage = levelstack.pop();
                 currentlevel--;
             }
-            currentlevel = level;
-        } else {
-            currentlevel++;
         }
         PDOutlineItem parent = levelstack.empty() ? null : levelstack.peek();
         levelstack.push(item);
+        currentlevel++;
         return parent;
     }
     
